@@ -1,5 +1,7 @@
 # Project Scrapmart
 
+#Note: Scrapmart uses PostgresSQL as backend, so make sure you have it installed and change the databases section in settings.py before running the app.
+
 
 ## Setup
 
