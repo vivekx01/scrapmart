@@ -26,6 +26,13 @@ urlpatterns = [
     path('addlocations/',views.adminlocations),
     path('userqueries/',views.userqueries),
     path('listingrequests/',views.adminrequests,name="approvalrequests"),
-    path('listingapprove/<int:listingpk>/',views.listingapprove)
+    path('listingapprove/<int:listingpk>/',views.listingapprove),
+    path('addlocation/',views.addlocation),
+    path('shopdetailsubmit/',views.adminaddshops),
+    path('deletelocality/<int:deletepk>/',views.deletelocality),
+    path('deletecity/<int:deletepk>/',views.deletecity),
+    path('responded/<int:querypk>/',views.queryresponded),
+    path('deletequery/<int:querypk>/',views.querydelete),
+
 
 ]

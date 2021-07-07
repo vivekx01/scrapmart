@@ -1,2 +1,0 @@
-userinfo model
-getlisted model

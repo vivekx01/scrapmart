@@ -15,6 +15,7 @@ def searchview(request):
         res=False
         context={'cities':city.objects.all(),'res':res}
         return render (request,"search.html",context)
+
 def load_localities(request):
     cityfetch = request.GET.get('city')
     cityget= city.objects.get(name=cityfetch)

@@ -54,12 +54,6 @@ def adminrequests(request):
     context={'requests':requests}
     return render(request,"approvalrequests.html",context)
 
-def userqueries(request):
-    #code to retrieve the user queries for admin
-    queries=userquery.objects.filter(status="NOT RESPONDED")
-    context={'queries':queries}
-    return render(request,"userqueries.html",context)
-
 def listingapprove(request,listingpk):
     #Approving listing request and adding data to search db
     u=searchdb.objects.get(id=listingpk)
@@ -68,11 +62,17 @@ def listingapprove(request,listingpk):
     return redirect('approvalrequests')
 
 def listingreject(request,listingpk):
-    #Rejecting a listing request 
+    #Rejecting a listing request in order to contact user
     u=searchdb.objects.filter(id=listingpk)[0]
     u.is_verifed=False
     u.save()
     return redirect('approvalrequests')
+
+def userqueries(request):
+    #code to retrieve the user queries for admin
+    queries=userquery.objects.filter(status=False)
+    context={'queries':queries}
+    return render(request,"userqueries.html",context)
 
 def adminaddshopview(request):
     #code to render admin panel add shop function
@@ -82,8 +82,8 @@ def adminaddshopview(request):
 def adminaddshops(request):
     #code to add the shop data from admin side to the search db
     username=request.POST['username']
-    city_fetch=request.POST['selectcities']
-    locality=request.POST['selectlocalities']
+    city_fetch=request.POST['city']
+    locality_fetch=request.POST['locality']
     shopname=request.POST['shopname']
     shopaddress=request.POST['shopaddress']
     shopcontact=request.POST['shopcontact']
@@ -93,7 +93,7 @@ def adminaddshops(request):
         messages.add_message(request,messages.ERROR,"User has already submitted their request please check the listing approvals.")
         return render (request,'adminaddshop.html')
     else:
-        u=searchdb(username=username,shopname=shopname,city=city_fetch,locality=locality,shopaddress=shopaddress,shopcontact=shopcontact,shopimage=shopimage)
+        u=searchdb(username=username,shopname=shopname,city=city_fetch,locality=locality_fetch,shopaddress=shopaddress,shopcontact=shopcontact,shopimage=shopimage,is_verified=True)
         u.save()
         messages.add_message(request,messages.SUCCESS,"Shop added successfully")
         return render (request,'addminaddshop.html')
@@ -112,20 +112,20 @@ def addlocation(request):
         if locality.objects.filter(name=locality_fetch).exists():
             #code that will run if both city and locality already exist
             messages.add_message(request,messages.ERROR,"City and locality already exist")
-            return redirect('editlocations')
+            return redirect('/admin/addlocations')
         else:
             #code that will run if the city exists but locality does not exist
             cityget=city.objects.get(name=city_fetch)
             locality(name=locality_fetch,city_id=cityget.id).save()
             messages.add_message(request,messages.SUCCESS,"Locality Added successfully")
-            return redirect('editlocations')
+            return redirect('/admin/addlocations')
     else:
         #code that will run if both don't exist
         city(name=city_fetch).save()
         cityget=city.objects.get(name=city_fetch)
         locality(name=locality_fetch,city_id=cityget.id).save()
         messages.add_message(request,messages.SUCCESS,"City and Locality Added successfully")
-        return redirect ('editlocations')
+        return redirect ('/admin/addlocations')
 
 def deletelocality(request,deletepk):
     #code to delete a city or locality
@@ -140,5 +140,19 @@ def deletecity(request,deletepk):
     citydb.delete()
     context={'cities':city.objects.all(),'localities':locality.objects.all()}
     return render(request,"editlocations.html",context)
+
+def queryresponded(request,querypk):
+    #when the admin responds to a query and marks it responded
+    q=userquery.objects.get(id=querypk)
+    q.status=True
+    q.save()
+    return redirect('/admin/userqueries/')
+
+def querydelete(request,querypk):
+    #if the admin wishes to delete a query
+    q=userquery.objects.get(id=querypk)
+    q.delete()
+    return redirect('/admin/userqueries/')
+
 
 

@@ -28,7 +28,7 @@ def querysubmit(request):
     query=request.POST['query']
     if User.objects.filter(username=username,email=email).exists():
         #if the user already has a query pending
-        if userquery.objects.filter(username=username,email=email,status="NOT RESPONDED").exists():
+        if userquery.objects.filter(username=username,email=email,status=False).exists():
             messages.add_message(request,messages.INFO,"You have already submitted a query")
             return redirect('/contactus/')
         #if the user is submitting a new query

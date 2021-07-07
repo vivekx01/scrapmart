@@ -1,5 +1,0 @@
-homepageview
-adminloginview
-userloginview
-faqview
-aboutview

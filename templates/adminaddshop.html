@@ -1,28 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<script>
-    $(document).ready(function () {
-        $('select#selectcities').change(function () {
-            var optionSelected = $(this).find("option:selected");
-            var valueSelected = optionSelected.val();
-            var city_name = optionSelected.text();
-
-
-            data = { 'cnt': city_name };
-            ajax('/getdetails', data, function (result) {
-
-                console.log(result);
-                $("#selectlocalities option").remove();
-                for (var i = result.length - 1; i >= 0; i--) {
-                    $("#selectlocalities").append('<option>' + result[i].name + '</option>');
-                };
-
-
-            });
-        });
-    });
-</script>
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/admin/homepage/">
@@ -41,7 +19,7 @@
 
 <div class="container" style="width: 60%; margin-top: 50px">
 
-    <form method="POST" action="/admin/addshop/submit/" enctype="multipart/form-data">
+    <form method="POST" action="/admin/addshop/submit/" enctype="multipart/form-data" data-localities-url="{% url 'ajax_load_localities'  %}" id="searchform">
         {% csrf_token %}
         <div class="mb-3">
             <label class="form-label">Username of the profile</label>
@@ -69,7 +47,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Select City</label>
-            <select name="selectcities" id="selectcities" class="form-select" aria-label="Default select example" required>
+            <select name="city" id="city" class="form-select" aria-label="Default select example" required>
                 <option selected>Select City</option>
                 {% for item in cities %}
                 <option val="{{ item.name }}">{{item.name}}</option>
@@ -78,8 +56,8 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Select Locality</label>
-            <select name="selectlocalities" id="selectlocalities" class="form-select" aria-label="Default select example" required>
-                <option selected>Select Locality</option>
+            <select name="city" id="locality" class="form-select" aria-label="Default select example" required>
+                <option selected disabled>Select Locality</option>
             </select>
         </div>
         <button type="submit" style="display:block; margin:auto" class="btn btn-dark btn-lg">Add to Search Database</button>
@@ -91,4 +69,21 @@
     <p class="float-end"></p>
     <p style="text-align: center;">© 2020–2021 Scrapmart, Inc.</p>
 </footer>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $("#city").change(function () {
+        var url = $("#searchform").attr("data-localities-url");
+        var city= $(this).val();
+
+        $.ajax({
+        url: url,
+        data: {
+            'city':city
+        },
+        success: function(data){
+            $("#locality").html(data);
+        }
+        });
+    })
+    </script>
 {% endblock %}

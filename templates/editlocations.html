@@ -16,7 +16,7 @@
     </div>
     {% endfor %}
     <div style="display:block; margin:auto; width: 530px;margin-top:20px" class="container">
-        <form method="POST" action="/addlocation/">
+        <form method="POST" action="/admin/addlocation/">
             {% csrf_token %}
             <h2 style="text-align: center;">Add Location</h2>
             <input type="text" class="form-control" placeholder="City" name="city"
@@ -36,7 +36,7 @@
             <tr>
                 {% for city in cities %}
                 <td>{{city.name}}</td>
-                <td><a href="/deletecity/{{city.id}}/" class="btn btn-danger">Delete</a></td>
+                <td><a href="/admin/deletecity/{{city.id}}/" class="btn btn-danger">Delete</a></td>
                 {% endfor %}
     
             </tr>
@@ -47,7 +47,7 @@
             <tr>
                 {% for locality in localities %}
                 <td>{{locality.name}}</td>
-                <td><a href="/deletelocality/{{locality.id}}/" class="btn btn-danger">Delete</a></td>
+                <td><a href="/admin/deletelocality/{{locality.id}}/" class="btn btn-danger">Delete</a></td>
                 {% endfor %}
             </tr>
         </table>
