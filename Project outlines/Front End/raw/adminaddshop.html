@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>This is getting listed form</h1>
+<form method="POST" action="/admin/addshop/submit/" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2 style="color: black; text-align:center">Add a shop to the User Search database</h2>
+    <input type="text" class="form-control" placeholder="Username" name="username" style="margin-bottom: 10px"required>
+    <input type="text" class="form-control" placeholder="Shop Name" name="shopname" style="margin-bottom: 10px"required>
+    <input type="text" class="form-control" placeholder="City" name="city" style="margin-bottom: 10px"required>
+    <input type="text" class="form-control" placeholder="Locality" name="locality" style="margin-bottom: 10px"required>
+    <input type="text" class="form-control" placeholder="Shop Address" name="shopaddress" style="margin-bottom: 10px" required> 
+    <input type="text" class="form-control" placeholder="Shop Contact Number" name="shopcontact" style="margin-bottom: 10px" required> 
+    <label for="img">Shop Image:</label>
+    <input type="file" id="img" name="imgdb" accept="image/*">
+    <input type="submit" class="btn btn-success" style="display:block; margin:auto; margin-top: 10px" value="Submit" required>  
+</form>
+{% for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+{% endblock %}

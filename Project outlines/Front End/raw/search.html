@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<script>
+    $(document).ready(function(){
+        $('select#selectcities').change(function () {
+            var optionSelected = $(this).find("option:selected");
+            var valueSelected  = optionSelected.val();
+             var city_name   = optionSelected.text();
+
+
+             data = {'cnt' : city_name };
+               ajax('/getdetails',data,function(result){
+
+                       console.log(result);
+                       $("#selectlocalities option").remove();
+                       for (var i = result.length - 1; i >= 0; i--) {
+                           $("#selectlocalities").append('<option>'+ result[i].name +'</option>');
+                       };
+
+
+                   });
+         });
+   });
+</script>
+<h1>Search Page</h1>
+    <h1 class="search-form-title text-center">
+        Search by City and locality:
+    </h1>
+    <form action="/searchresult/" method="POST">
+        {% csrf_token %}
+            <label>city:</label>
+            <select name="selectcities" id="selectcities">
+                <option selected>Select City</option>
+                {% for item in cities %}
+                <option val="{{ item.name }}">{{item.name}}</option>
+                {% endfor %}
+            </select>
+            <label>locality:</label>
+            <select name="selectlocalities" id="selectlocalities">
+                <option selected>Select Locality</option>
+            </select>
+        <input type="submit" class="btn btn-success">
+    </form>
+
+{% endblock %}

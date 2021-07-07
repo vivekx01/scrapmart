@@ -1,0 +1,14 @@
+.landing{
+  background-image: url("/static/img/bg1.jpeg");
+  height: 95vh;
+}
+
+.landing h2{
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+}
+p{
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+}

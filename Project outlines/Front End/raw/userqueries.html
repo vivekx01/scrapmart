@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>This is userqueries page</h1>
+{% for query in queries %}
+<div style="margin: 40px" class="alert alert-warning" role="alert">
+    <p>Username: {{query.username}}</p>
+    <p>Email: {{query.email}}</p>
+    <p>Query: {{query.query}}</p>
+    <a href="/responded/{{query.id}}/" class="btn btn-success">MARK AS RESPONDED</a>
+    <a href="/deletequery/{{query.id}}/" class="btn btn-danger">REJECT AND DELETE</a>
+</div>
+{% endfor %}
+{% endblock %}

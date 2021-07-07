@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Hello this is homepage</h1>
+<a href="/userlogin/">Login</a>
+<a href="/usersignup/">Sign up</a>
+<a href="/faq/">FAQ</a>
+<a href="/about/">About</a>
+<a href="/contactus/">Contact Us</a>
+{% for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+
+{% endblock %}

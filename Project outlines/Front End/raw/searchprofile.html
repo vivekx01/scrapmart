@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Search Profile</h1>
+{% for result in results %}
+<div style="margin: 40px" class="alert alert-success" role="alert">
+    <p>Shop name: {{result.shopname}}</p>
+    <p>Phone Number: {{result.shopcontact}}</p>
+    <p>Address: {{result.shopaddress}}</p>
+    <p>City: {{result.city}}</p>
+    <p>Locality: {{result.locality}}</p>
+    <p>Shop Image: <img src="{{result.shopimage.url}}"></p>
+</div>
+{% endfor %}
+{% endblock %}

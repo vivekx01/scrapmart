@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+Hello {{username}}
+<br>
+Your information:
+<br>
+First Name: {{firstname}}
+<br>
+Last Name: {{lastname}}
+<br>
+{% for data in datas %}
+Date of Birth : {{data.dob}}
+<br>
+Phone number : {{data.phone}}
+{% endfor %}
+
+{% endblock %}

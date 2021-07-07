@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Welcome admin, This is admin panel</h1>
+<a href="/admin/logout">Logout</a>
+<a href="/admin/listingrequests/">Show listing requests</a>
+<a href="/admin/addshop/">Add a shop to search database</a>
+<a href="/admin/locations/">Add a new city/locality</a>
+<a href="/admin/userqueries/">Show contact queries</a>
+{% for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,17 @@
+admin panel
+user profile page
+user homepage - search console + logout
+search results page
+search profile page with map directions
+get listed form
+
+
+Done:
+
+Homepage with signup and description
+User Login page
+admin login
+faq page
+about us and contact page
+Forgot password
+profile page

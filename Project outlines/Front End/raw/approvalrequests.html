@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>This is listing approvals page</h1>
+<h1 style="text-align:center">Listing Requests</h1>
+{% for listing in requests %}
+<div style="margin: 40px" class="alert alert-success" role="alert">
+    <p>Username: {{listing.username}}</p>
+    <p>Phone Number: {{listing.shopcontact}}</p>
+    <p>Shop name: {{listing.shopname}}</p>
+    <p>Address: {{listing.shopaddress}}</p>
+    <p>City: {{listing.city}}</p>
+    <p>Locality: {{listing.locality}}</p>
+    <p>Shop Image: <img src="{{listing.shopimage.url}}" class="img-fluid" ></p>
+    <p>Listing Status: <a style="color: red">{{listing.status}}</a></p>
+    <a href="/listingapprove/{{listing.id}}/" class="btn btn-success">Approve</a>
+    <a href="/listingreject/{{listing.id}}/" class="btn btn-danger">Reject</a> 
+</div>
+{% endfor %}
+{% endblock %}

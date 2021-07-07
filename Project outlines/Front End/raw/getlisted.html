@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>This is getting listed form</h1>
+<form method="POST" action="/user/getlisted/submit/" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2 style="color: black; text-align:center">Fill the necessary information to apply for getting listed</h2>
+    
+    <input type="text" class="form-control" placeholder="Shop Name" name="shopname" style="margin-bottom: 10px"required>
+    <input type="text" class="form-control" placeholder="City" name="city" style="margin-bottom: 10px"required>
+    <input type="text" class="form-control" placeholder="Locality" name="locality" style="margin-bottom: 10px"required>
+    <input type="text" class="form-control" placeholder="Shop Address" name="shopaddress" style="margin-bottom: 10px" required> 
+    <input type="text" class="form-control" placeholder="Shop Contact Number" name="shopcontact" style="margin-bottom: 10px" required> 
+    <label for="img">Shop Image:</label>
+    <input type="file" id="img" name="img" accept="image/*">
+    <input type="submit" class="btn btn-success" style="display:block; margin:auto; margin-top: 10px" value="Submit" required>  
+</form>
+<h3>Please submit data only once</h3>
+{% for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+{% endblock %}

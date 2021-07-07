@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Hello This is signup page</h1>
+<form method="POST" action="/signupuser/">
+    {% csrf_token %}
+    <h2 style="color: white; text-align:center">Sign Up!</h2>
+    <input type="text" class="form-control" placeholder="First Name" name="firstname" style="margin-bottom: 10px" required>
+    <input type="text" class="form-control" placeholder="Last Name" name="lastname" style="margin-bottom: 10px" required>
+    <input type="text" class="form-control" placeholder="Username" name="username" style="margin-bottom: 10px"required>
+    <input type="password" class="form-control" placeholder="Password" name="password" style="margin-bottom: 10px" required> 
+    <input type="text" class="form-control" placeholder="email" name="email" style="margin-bottom: 10px" required> 
+    <input type="text" class="form-control" placeholder="Phone Number" name="phone" required>
+    Date of birth:
+    <input type="date" class="form-control" placeholder="Date of birth" name="dob" required>
+    
+    Security Question:
+    <select name="securityquestion">
+        <option value="nickname">Nickname</option>
+        <option value="school">School Name</option>
+        <option value="pet">Pet name</option>
+        <option value="bestfriend">Best Friend's name</option>
+    </select>
+    <input type="text" class="form-control" placeholder="Security answer" name="securityanswer" required>
+    <input type="submit" class="btn btn-success" style="display:block; margin:auto; margin-top: 10px" value="Sign Up" required>  
+</form>
+{% endblock %}

@@ -1,0 +1,95 @@
+body{
+    background-color: #2d3436;
+    background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
+}
+.con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 35px 26px;
+    width: 600px;
+    margin-bottom: 30px;
+}
+
+.abt {
+    font-size: 14px
+}
+
+.inputbox {
+    margin-top: 12px;
+    position: relative
+}
+
+.inputbox input {
+    border: 2px solid #bdc3c7;
+    padding: 0 10px
+}
+.inputbox textarea {
+    border: 2px solid #bdc3c7;
+    padding: 0 10px
+}
+.inputbox input:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+    border: 2px solid #0d6efd
+}
+.inputbox textarea:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+    border: 2px solid #0d6efd
+}
+
+.inputbox span {
+    font-size: 12px
+}
+
+.inputbox a {
+    font-size: 12px;
+    text-decoration: none
+}
+
+.input-tag {
+    position: absolute;
+    top: 27px;
+    left: 7px;
+    width: 32px
+}
+
+.proceed button {
+    font-size: 15px
+}
+
+.form-check-label {
+    font-size: 12px
+}
+
+.btn-primary:focus {
+    color: #fff;
+    background-color: #025ce2;
+    border-color: #0257d5;
+    box-shadow: none
+}
+
+.form-check-input {
+    width: 16px;
+    height: 16px;
+    margin-top: 6px
+}
+.shp{
+    text-align: center;
+    color: #495057;
+    font-family: Arial;
+    font-weight: bold;
+}

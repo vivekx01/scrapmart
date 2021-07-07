@@ -1,0 +1,4 @@
+<option disabled selected>Select Locality</option>
+{% for locality in localities %}
+<option value="{{ locality.name }}">{{ locality.name }}</option>
+{% endfor %}

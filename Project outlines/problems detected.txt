@@ -1,0 +1,3 @@
+date problem while signing up - fixed
+security question problem while signing up -fixed
+faq page container separations suggested -fixed
