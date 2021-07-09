@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+SECRET_KEY = '@_l=j9i8&!)zi)0le!iq^um5ndgph8-ke-zs2=41#(-kj02+v+'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

@@ -25,12 +25,21 @@ def load_localities(request):
 
 def searchresult(request):
     #code for accepting search input from user and displaying results
-    city_fetch=request.POST['city']
-    locality=request.POST['locality']
-    results=searchdb.objects.filter(city=city_fetch,locality=locality,is_verified=False)
-    res=True
-    context={'results': results,'cities':city.objects.all(),'res':res}
-    return render(request,"search.html",context)
+    try:
+        city_fetch=request.POST['city']
+        locality=request.POST['locality']
+        results=searchdb.objects.filter(city=city_fetch,locality=locality,is_verified=True)
+        if results.exists():
+            res=True
+            context={'results': results,'cities':city.objects.all(),'res':res}
+            return render(request,"search.html",context)
+        else:
+            des=True
+            context={'cities':city.objects.all(),'des':des}
+            return render(request,"search.html",context)
+    except Exception as e:
+        context={'cities':city.objects.all()}
+        return render(request,"search.html",context)
 
 def searchprofile(request,profilepk):
     #loading the profile page of a shop
