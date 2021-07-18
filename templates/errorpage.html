@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'img/slogo.png' %}" alt="" width="45" height="35" class="d-inline-block align-text-top">
+                Scrapmart
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search/">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop/getlisted/">Get Listed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about/">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/faq/">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contactus/">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <h2 style="text-align: center;" class="mt-3">Oops! You seem to be lost!</h2>
+    <div class="container text-center">
+        <a href="/" class="btn btn-success btn-sm">Take me to the Homepage</a>
+    </div>
+    <div class="container-fluid text-center mt-1">
+        <img src="{% static 'img/404.svg' %}" class="img-fluid" style="height: 408px;">
+    </div>
+    
+
+    <footer class="container" style="margin-top: 20px;">
+        <p class="float-end"></p>
+        <p style="text-align: center">© 2020–2021 Scrapmart, Inc.</p>
+    </footer>
+{% endblock %}

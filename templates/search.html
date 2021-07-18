@@ -38,7 +38,7 @@
                         <a class="nav-link" href="/contactus/">Contact Us</a>
                     </li>
                 </ul>
-                <a href="/user/logout/" class="btn btn-danger">Logout</a>
+                <a href="/user/logout/" class="btn btn-danger"><span><i class="bi bi-box-arrow-left"></i></span>Logout</a>
             </div>
         </div>
     </nav>
@@ -49,15 +49,15 @@
             <h4 style="text-align: center; color:white">Select City</h4>
             <form action="/search/searchresult/" id="searchform" method="POST" data-localities-url="{% url 'ajax_load_localities'  %}">
                 {% csrf_token %}
-                <select class="form-select form-select-lg" id="city" name="city" aria-label=".form-select-lg example" required>
-                    <option selected disabled>Select City</option>
+                <select class="form-select form-select-lg" id="city" name="city" required>
+                    <option value="" selected>Select City</option>
                     {% for item in cities %}
                     <option val="{{ item.name }}">{{item.name}}</option>
                     {% endfor %}
                 </select>
                 <h4 style="text-align: center;color:white;">Select Locality</h4>
-                <select class="form-select form-select-lg" id="locality" name="locality" aria-label=".form-select-lg example" required>
-                    <option selected disabled>Select Locality</option>
+                <select class="form-select form-select-lg" id="locality" name="locality" required>
+                    <option value="" selected>Select Locality</option>
                 </select>
                 <button type="submit" style="display:block; margin:auto" class="btn btn-dark btn-lg mt-3">Search</button>
             </form>

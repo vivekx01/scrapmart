@@ -21,4 +21,6 @@ urlpatterns = [
     path('getlisted/',views.getlistedview),
     path('getlisted/submit/',views.getlistedformsubmit),
     path('dealerprofile/',views.viewshop),
+    path('dealerprofile/edit/',views.editdealerprofileview),
+    path('dealerprofile/edit/save/',views.editdealersave),
 ]

@@ -1,61 +1,83 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/admin/homepage/">
-                <img src="{% static 'img/slogo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                Scrapmart
-            </a>
-            <a href="/admin/logout/" class="btn btn-danger">Logout</a>
-        </div>
-    </nav>
-    {% for message in messages %}
-    <div class="alert alert-dark" role="alert">
-        {{message}}
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/admin/homepage/">
+            <img src="{% static 'img/slogo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            Scrapmart
+        </a>
+        <a href="/admin/logout/" class="btn btn-danger"><span><i class="bi bi-box-arrow-left"></i></span>Logout</a>
     </div>
-    {% endfor %}
-    <div style="display:block; margin:auto; width: 530px;margin-top:20px" class="container">
-        <form method="POST" action="/admin/addlocation/">
-            {% csrf_token %}
-            <h2 style="text-align: center;">Add Location</h2>
-            <input type="text" class="form-control" placeholder="City" name="city"
-                style="width: 200px; display:inline; margin:auto">
-            <input type="text" class="form-control" placeholder="Locality" name="locality"
-                style="width: 200px; display:inline; margin:auto">
-            <input type="submit" value="Add to Database" class="btn btn-dark" style="display:block;margin-top: -38px;margin-left:420px">
-        </form>
-        
-    </div>
-    <div class="container" style="width: 100%; display:block; margin:auto; margin-top: 80px">
-        <table style="width: 70%">
-            <tr>
-                <th>Cities</th>
-            </tr>
-            
-            <tr>
-                {% for city in cities %}
-                <td>{{city.name}}</td>
-                <td><a href="/admin/deletecity/{{city.id}}/" class="btn btn-danger">Delete</a></td>
-                {% endfor %}
-    
-            </tr>
-            <tr>
-                <th>Localities</th>
-            </tr>
-            
-            <tr>
-                {% for locality in localities %}
-                <td>{{locality.name}}</td>
-                <td><a href="/admin/deletelocality/{{locality.id}}/" class="btn btn-danger">Delete</a></td>
-                {% endfor %}
-            </tr>
-        </table>
-    </div>
+</nav>
+{% for message in messages %}
+<div class="alert alert-dark alert-dismissible fade show" role="alert">
+    <h6>{{message}}</h6>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<div style="display:block; margin:auto; width: 530px;margin-top:20px" class="container">
+    <form method="POST" action="/admin/addlocation/">
+        {% csrf_token %}
+        <h2 style="text-align: center;">Add Location</h2>
+        <input type="text" class="form-control" placeholder="City" name="city"
+            style="width: 200px; display:inline; margin:auto">
+        <input type="text" class="form-control" placeholder="Locality" name="locality"
+            style="width: 200px; display:inline; margin:auto">
+        <input type="submit" value="Add to Database" class="btn btn-dark"
+            style="display:block;margin-top: -38px;margin-left:420px">
+    </form>
 
-    <footer class="container" style="margin-top: 80px;">
-        <p class="float-end"></p>
-        <p style="text-align: center;">© 2020–2021 Scrapmart, Inc.</p>
-    </footer>
+</div>
+<div class="container" style="width: 100%; display:block; margin:auto; margin-top: 80px">
+    <form action="/admin/localityget/" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-2">
+                <select name="city" id="city" class="form-select">
+                    {% for city in cities %}
+                    <option value={{city.id}}>{{city.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-dark">Show Localities</button>
+            </div>
+    </form>
+</div>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Locality</th>
+            <th scope="col">City Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    {% if res %}
+    {% for locality in localities %}
+    <tbody>
+        <tr>
+            <td>{{locality.name}}</td>
+            <td>{{cityname}}</td>
+            <td><a href="/admin/deletelocality/{{locality.id}}/" class="btn btn-danger">Delete</a></td>
+        </tr>
+    </tbody>
+    {% endfor %}
+    {% else %}
+    <tbody>
+        <tr>
+            <td></td>
+            <td>Localities will be shown here</td>
+            <td></td>
+        </tr>
+    </tbody>
+    {% endif %}
+</table>
+</div>
+
+<footer class="container" style="margin-top: 220px;">
+    <p class="float-end"></p>
+    <p style="text-align: center;">© 2020–2021 Scrapmart, Inc.</p>
+</footer>
 
 {% endblock %}

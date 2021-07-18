@@ -52,7 +52,7 @@
                             maxlength = "20" required> <input type="text" placeholder="Last name" name="lastname" class="form-control" maxlength = "30" required> </div>
                             <div class="inputbox"> <input type="text" class="form-control" name="phone" placeholder="Phone Number" maxlength = "10" required> </div>
                     <div class="inputbox"> <input type="email" class="form-control" name="email" placeholder="Email" maxlength = "50" required> </div>
-                    <div class="inputbox"> <input type="password" class="form-control" name="password" placeholder="Password" maxlength = "200" required>
+                    <div class="inputbox"> <input type="password" class="form-control" name="password" placeholder="Password" minlength="8" maxlength = "200" required>
                     </div>
                     <div class="inputbox"> <input placeholder="Date of Birth" name="dob" class="form-control" type="text"
                             onfocus="(this.type='date')" id="date"> </div>
@@ -80,7 +80,7 @@
             </form>
         </div>
     </div>
-    <footer class="container" style="margin-top: -40px;">
+    <footer class="container" style="margin-top: -20px;">
         <p class="float-end"></p>
         <p style="text-align: center;color:white">© 2020–2021 Scrapmart, Inc.</p>
     </footer>

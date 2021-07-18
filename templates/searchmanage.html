@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/usermanage.css' %}">
+{% endblock %}
+{% block content %}
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/admin/homepage/">
+                <img src="{% static 'img/slogo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Scrapmart
+            </a>
+            <a href="/admin/logout/" class="btn btn-danger"><span><i class="bi bi-box-arrow-left"></i></span>Logout</a>
+        </div>
+    </nav>
+    {% for message in messages %}
+    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+    <h3 style="text-align: center; color:white" class="mt-3">Manage Search Database</h3>
+    <div class="container">
+        <div class="container" style="width: 80%;margin-top:40px">
+            <h4 style="text-align: center; color:white">Select City</h4>
+            <form action="/admin/searchmanage/searchresult/" id="searchform" method="POST" data-localities-url="{% url 'ajax_load_localities'  %}">
+                {% csrf_token %}
+                <select class="form-select form-select-lg" id="city" name="city" aria-label=".form-select-lg example" required>
+                    <option selected disabled>Select City</option>
+                    {% for item in cities %}
+                    <option val="{{ item.name }}">{{item.name}}</option>
+                    {% endfor %}
+                </select>
+                <h4 style="text-align: center;color:white;">Select Locality</h4>
+                <select class="form-select form-select-lg" id="locality" name="locality" aria-label=".form-select-lg example" required>
+                    <option selected disabled>Select Locality</option>
+                </select>
+                <button type="submit" style="display:block; margin:auto" class="btn btn-dark btn-lg mt-3">Search</button>
+            </form>
+        </div>
+        {% if res %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-margin">
+                    <div class="card-body">
+                        <div class="row search-body">
+                            <div class="col-lg-12">
+                                <div class="search-result">
+                                    <div class="result-header">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="records"><h5>Showing results:</h5></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="result-body">
+                                        {% for result in results %}
+                                        <div class="alert alert-dark">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img class="img-fluid rounded" src="{{result.shopimage.url}}" style="width: 300px; height:150px">    
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <p>Shop name: {{result.shopname}}</p>
+                                                    <hr>
+                                                    <p>Locality: {{result.locality}}</p>
+                                                    <hr>
+                                                    <p>City: {{result.city}}</p>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <a href="/admin/searchmanage/profile/{{result.id}}/" style="display: block;" class="btn btn-dark mt-4">View Profile</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if des %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-margin">
+                    <div class="card-body">
+                        <div class="row search-body">
+                            <div class="col-lg-12">
+                                <div class="search-result">
+                                    <div class="result-header">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="records"><h5>Showing results:</h5></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="result-body">
+                                        <h4 style="text-align: center;">No Results found</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+    </div>
+
+
+    <footer class="container" style="margin-top: 20px;">
+        <p class="float-end"></p>
+        <p style="text-align: center;color:white">© 2020–2021 Scrapmart, Inc.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $("#city").change(function () {
+        var url = $("#searchform").attr("data-localities-url");
+        var city= $(this).val();
+
+        $.ajax({
+        url: url,
+        data: {
+            'city':city
+        },
+        success: function(data){
+            $("#locality").html(data);
+        }
+        });
+        $(window).bind("pageshow", function(event) {
+            if (event.originalEvent.persisted) {
+                window.location.reload() 
+            }
+        });
+    })
+    
+    </script>
+{% endblock %}

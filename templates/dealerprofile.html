@@ -32,10 +32,16 @@
                     <a class="nav-link" href="/contactus/">Contact Us</a>
                 </li>
             </ul>
-            <a href="/user/logout/" class="btn btn-danger">Logout</a>
+            <a href="/user/logout/" class="btn btn-danger"><span><i class="bi bi-box-arrow-left"></i></span>Logout</a>
         </div>
     </div>
 </nav>
+{% for message in messages %}
+    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+        <h6>{{message}}</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
 <h1 style="text-align: center; margin-top:10px">Shop Profile</h1>
 {% for info in infos %}
 <div class="container" style="margin-top: 30px;">
@@ -45,10 +51,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="{{info.shopimage.url}}" alt="Admin" width="200" height="200">
+                            <img src="{{info.shopimage.url}}" alt="Admin" height="250"
+                            width="300">
                             <div class="mt-3">
                                 <p class="text-secondary mb-1">Scrapmart Dealer</p>
-                                <a href="/shop/getlisted/" class="btn btn-dark">Edit Shop Details</a>
+                                <a href="/shop/dealerprofile/edit/" class="btn btn-dark">Edit Shop Details</a>
                             </div>
                         </div>
                     </div>
@@ -122,5 +129,9 @@
         </div>
     </div>
 </div>
+<footer class="container" style="margin-top: 0px;">
+    <p class="float-end"></p>
+    <p style="text-align: center;">© 2020–2021 Scrapmart, Inc.</p>
+</footer>
 {% endfor %}
 {% endblock %}

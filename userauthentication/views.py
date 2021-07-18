@@ -10,7 +10,6 @@ from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeErro
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
-from django.contrib.auth.models import User
 from .utils import token_generator
 
 # Create your views here.
@@ -36,12 +35,17 @@ def userauthenticate(request):
     if User.objects.filter(username=username).exists():
         u=User.objects.get(username=username)
         if u.is_active==False:
-            messages.add_message(request,messages.ERROR,"Account is not activated. Please check your email")
+            messages.add_message(request,messages.ERROR,"Account is not active.")
             return redirect('/user/auth/login/')
         else:
-            user= authenticate(username=username,password=password)
-            login(request,user)
-            return redirect('/user/homepage/')
+            try:
+                user= authenticate(username=username,password=password)
+                login(request,user)
+                return redirect('/user/homepage/')
+            except Exception as e:
+                messages.add_message(request,messages.ERROR,"Invalid credentials")
+                return redirect('userloginpage')
+                   
     #if user does not exist
     else:
         user= authenticate(username=username,password=password)

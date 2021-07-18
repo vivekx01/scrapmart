@@ -43,3 +43,30 @@ def viewshop(request):
     else:
         messages.add_message(request,messages.INFO,"Please apply to get listed.")
         return redirect('/shop/getlisted/')
+
+def editdealerprofileview(request):
+    #code to render edit dealer profile page
+    if not request.user.is_authenticated:
+        return render(request,'homepage.html')
+    else:
+        userid=request.user.id
+        infos=searchdb.objects.filter(user_id=userid)
+        context={'infos':infos}
+        return render(request,"editdealerprofile.html",context)
+
+    
+
+def editdealersave(request):
+    #code to save shop details after editing
+    userid= request.user.id
+    shopname= request.POST['shopname']
+    shopaddress= request.POST['shopaddress']
+    shopcontact= request.POST['shopcontact']
+    s=searchdb.objects.get(user_id=userid)
+    s.shopname= shopname
+    s.shopaddress= shopaddress
+    s.shopcontact= shopcontact
+    s.is_verified=False
+    s.save()
+    messages.add_message(request,messages.INFO,"Details Updated Successfully")
+    return redirect('/shop/dealerprofile/')

@@ -39,3 +39,7 @@ def querysubmit(request):
     else:
         messages.add_message(request,messages.INFO,"Account not found")
         return redirect('/contactus/')
+
+def handle_not_found(request,exception):
+    #loads the custom error 404 page
+    return render (request,'errorpage.html')
