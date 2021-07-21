@@ -27,3 +27,5 @@ urlpatterns = [
     path('admin/',include('administration.urls')),
 ]
 urlpatterns= urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "main.views.handle_not_found"

@@ -32,14 +32,15 @@
                     <a class="nav-link" href="/contactus/">Contact Us</a>
                 </li>
             </ul>
-            <a href="/user/logout/" class="btn btn-danger">Logout</a>
+            <a href="/user/logout/" class="btn btn-danger"><span><i class="bi bi-box-arrow-left"></i></span>Logout</a>
         </div>
     </div>
 </nav>
 {% for message in messages %}
-<div class="alert alert-dark" role="alert">
-    {{message}}
-</div>
+    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+        <h6>{{message}}</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 {% endfor %}
 
 <div class="card text-center">

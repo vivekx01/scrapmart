@@ -35,7 +35,7 @@
                         <a class="nav-link" href="/contactus/">Contact Us</a>
                     </li>
                 </ul>
-                <a href="/user/auth/logout/" class="btn btn-danger">Logout</a>
+                <a href="/user/logout/" class="btn btn-danger"><span><i class="bi bi-box-arrow-left"></i></span>Logout</a>
             </div>
         </div>
     </nav>
@@ -58,18 +58,16 @@
                     <div class="inputbox"> <textarea class="form-control" name="shopaddress" placeholder="Shop Address" maxlength = "500" required></textarea> </div>
                     <div class="inputbox"> <input type="text" class="form-control" name="shopcontact" placeholder="Shop Contact" maxlength = "10"> </div>
                     <div class="inputbox" style="border: 2px solid #bdc3c7; ">
-                        <select name="city" id="city" class="form-select form-select-sm"
-                            aria-label=".form-select-sm example">
-                            <option selected disabled>Select City</option>
+                        <select name="city" id="city" class="form-select form-select-sm" required>
+                            <option value="" selected>Select City</option>
                             {% for item in cities %}
                             <option val="{{ item.name }}">{{item.name}}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="inputbox" style="border: 2px solid #bdc3c7; ">
-                        <select name="locality" id="locality" class="form-select form-select-sm"
-                            aria-label=".form-select-sm example">
-                            <option selected disabled>Select Locality</option>
+                        <select name="locality" id="locality" class="form-select form-select-sm" required>
+                            <option value="" selected>Select Locality</option>
                         </select>
                     </div>
                 

@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/adminaddshop.css' %}">
+{% endblock %}
 {% block content %}
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
@@ -7,7 +10,7 @@
             <img src="{% static 'img/slogo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
             Scrapmart
         </a>
-        <a href="/admin/logout/" class="btn btn-danger">Logout</a>
+        <a href="/admin/logout/" class="btn btn-danger"><span><i class="bi bi-box-arrow-left"></i></span>Logout</a>
     </div>
 </nav>
 {% for message in messages %}
@@ -15,75 +18,83 @@
     {{message}}
 </div>
 {% endfor %}
-<h1 style="text-align: center;margin-top:20px">Add a Shop to the database</h1>
+<div class="container">
+    <h1 style="text-align: center;margin-top:20px;color:white">Add a Shop to the database</h1>
 
-<div class="container" style="width: 60%; margin-top: 50px">
+    <div class="card mt-3">
 
-    <form method="POST" action="/admin/addshop/submit/" enctype="multipart/form-data" data-localities-url="{% url 'ajax_load_localities'  %}" id="searchform">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label class="form-label">Username of the profile</label>
-            <input type="text" name="username" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" required>
+        <div class="container" style="width: 60%; margin-top: 50px">
+
+            <form method="POST" action="/admin/addshop/submit/" enctype="multipart/form-data"
+                data-localities-url="{% url 'ajax_load_localities'  %}" id="searchform">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Username of the profile</label>
+                    <input type="text" name="username" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" maxlength = "50" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Shop Name</label>
+                    <input type="text" name="shopname" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" maxlength="100" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Shop Address</label>
+                    <textarea class="form-control" name="shopaddress" id="exampleFormControlTextarea1" rows="3"
+                        maxlength="500" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Shop Contact</label>
+                    <input type="text" name="shopcontact" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" maxlength = "10" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Shop Image</label>
+                    <input type="file" name="img" accept="image/*" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Select City</label>
+                    <select name="city" id="city" class="form-select" aria-label="Default select example" required>
+                        <option selected>Select City</option>
+                        {% for item in cities %}
+                        <option val="{{ item.name }}">{{item.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Select Locality</label>
+                    <select name="city" id="locality" class="form-select" aria-label="Default select example" required>
+                        <option selected disabled>Select Locality</option>
+                    </select>
+                </div>
+                <button type="submit" style="display:block; margin:auto" class="btn btn-dark btn-lg">Add to Search
+                    Database</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Shop Name</label>
-            <input type="text" name="shopname" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Shop Address</label>
-            <textarea class="form-control" name="shopaddress" id="exampleFormControlTextarea1" rows="3" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Shop Contact</label>
-            <input type="text" name="shopcontact" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Shop Image</label>
-            <input type="file" name="img" accept="image/*" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Select City</label>
-            <select name="city" id="city" class="form-select" aria-label="Default select example" required>
-                <option selected>Select City</option>
-                {% for item in cities %}
-                <option val="{{ item.name }}">{{item.name}}</option>
-                {% endfor %}
-            </select>    
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Select Locality</label>
-            <select name="city" id="locality" class="form-select" aria-label="Default select example" required>
-                <option selected disabled>Select Locality</option>
-            </select>
-        </div>
-        <button type="submit" style="display:block; margin:auto" class="btn btn-dark btn-lg">Add to Search Database</button>
-    </form>
+    </div>
 </div>
 
 
-<footer class="container" style="margin-top: 120px;">
+<footer class="container" style="margin-top: 40px;">
     <p class="float-end"></p>
-    <p style="text-align: center;">© 2020–2021 Scrapmart, Inc.</p>
+    <p style="text-align: center;color:white">© 2020–2021 Scrapmart, Inc.</p>
 </footer>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
+<script>
     $("#city").change(function () {
         var url = $("#searchform").attr("data-localities-url");
-        var city= $(this).val();
+        var city = $(this).val();
 
         $.ajax({
-        url: url,
-        data: {
-            'city':city
-        },
-        success: function(data){
-            $("#locality").html(data);
-        }
+            url: url,
+            data: {
+                'city': city
+            },
+            success: function (data) {
+                $("#locality").html(data);
+            }
         });
     })
-    </script>
+</script>
 {% endblock %}

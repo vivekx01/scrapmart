@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'Scrapmart.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'scrapmart2',
+        'NAME': 'scrapmart',
         'USER' : 'postgres',
         'PASSWORD' : '1234',
         'HOST' : 'localhost',
@@ -142,6 +142,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'scrapmartemail' 
-EMAIL_HOST_PASSWORD ='password'
+EMAIL_HOST_USER = 'teamscrapmart@gmail.com' 
+EMAIL_HOST_PASSWORD ='Scrapmart@2021'
 DEFAULT_FROM_EMAIL = 'defaultemail'
