@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-SECRET_KEY = '@_l=j9i8&!)zi)0le!iq^um5ndgph8-ke-zs2=41#(-kj02+v+'
+SECRET_KEY = ''
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,6 +142,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'teamscrapmart@gmail.com' 
-EMAIL_HOST_PASSWORD ='Scrapmart@2021'
+EMAIL_HOST_USER = '' 
+EMAIL_HOST_PASSWORD =''
 DEFAULT_FROM_EMAIL = 'defaultemail'
