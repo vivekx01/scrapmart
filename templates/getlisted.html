@@ -56,7 +56,7 @@
                 <div class="form mt-3">
                     <div class="inputbox"> <input type="text" class="form-control" name="shopname" placeholder="Shop Name" maxlength = "100" required> </div>
                     <div class="inputbox"> <textarea class="form-control" name="shopaddress" placeholder="Shop Address" maxlength = "500" required></textarea> </div>
-                    <div class="inputbox"> <input type="text" class="form-control" name="shopcontact" placeholder="Shop Contact" maxlength = "10"> </div>
+                    <div class="inputbox"> <input type="tel" pattern="[0-9]{10}" class="form-control" name="shopcontact" placeholder="Shop Contact (10 digits)" maxlength = "10"> </div>
                     <div class="inputbox" style="border: 2px solid #bdc3c7; ">
                         <select name="city" id="city" class="form-select form-select-sm" required>
                             <option value="" selected>Select City</option>
