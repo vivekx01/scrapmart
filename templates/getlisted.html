@@ -35,7 +35,7 @@
                         <a class="nav-link" href="/contactus/">Contact Us</a>
                     </li>
                 </ul>
-                <a href="/user/auth/logout/" class="btn btn-danger"><span><i class="bi bi-box-arrow-left"></i></span>Logout</a>
+                <a href="/user/logout/" class="btn btn-danger"><span><i class="bi bi-box-arrow-left"></i></span>Logout</a>
             </div>
         </div>
     </nav>
@@ -56,7 +56,7 @@
                 <div class="form mt-3">
                     <div class="inputbox"> <input type="text" class="form-control" name="shopname" placeholder="Shop Name" maxlength = "100" required> </div>
                     <div class="inputbox"> <textarea class="form-control" name="shopaddress" placeholder="Shop Address" maxlength = "500" required></textarea> </div>
-                    <div class="inputbox"> <input type="text" class="form-control" name="shopcontact" placeholder="Shop Contact" maxlength = "10"> </div>
+                    <div class="inputbox"> <input type="tel" pattern="[0-9]{10}" class="form-control" name="shopcontact" placeholder="Shop Contact (10 digits)" maxlength = "10"> </div>
                     <div class="inputbox" style="border: 2px solid #bdc3c7; ">
                         <select name="city" id="city" class="form-select form-select-sm" required>
                             <option value="" selected>Select City</option>
@@ -69,6 +69,11 @@
                         <select name="locality" id="locality" class="form-select form-select-sm" required>
                             <option value="" selected>Select Locality</option>
                         </select>
+                    </div>
+                
+                    <div class="inputbox">
+                        <h6 class="shp">Shop Profile Picture</h6> 
+                        <input type="file" accept="image/*" name="img" class="form-control" placeholder="Shop Image" required>
                     </div>
                 </div>
     
