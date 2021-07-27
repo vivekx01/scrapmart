@@ -99,13 +99,12 @@ def adminaddshops(request):
     shopname=request.POST['shopname']
     shopaddress=request.POST['shopaddress']
     shopcontact=request.POST['shopcontact']
-    shopimage=request.FILES['img']
     #if the user has already submitted a request
     if searchdb.objects.filter(username=username).exists():
         messages.add_message(request,messages.ERROR,"User has already submitted their request please check the listing approvals.")
         return render (request,'adminaddshop.html')
     else:
-        u=searchdb(username=username,shopname=shopname,city=city_fetch,locality=locality_fetch,shopaddress=shopaddress,shopcontact=shopcontact,shopimage=shopimage,is_verified=True)
+        u=searchdb(username=username,shopname=shopname,city=city_fetch,locality=locality_fetch,shopaddress=shopaddress,shopcontact=shopcontact,is_verified=True)
         u.save()
         messages.add_message(request,messages.SUCCESS,"Shop added successfully")
         return render (request,'addminaddshop.html')

@@ -14,5 +14,4 @@ class searchdb(models.Model):
     shopname=models.CharField(max_length=100)
     shopaddress=models.CharField(max_length=500)
     shopcontact=models.CharField(max_length=12)
-    shopimage=models.ImageField(upload_to ='searchdb/')
     is_verified=models.BooleanField(default=False)
