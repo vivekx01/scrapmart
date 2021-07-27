@@ -21,5 +21,5 @@ urlpatterns = [
     path('',views.searchview),
     path('load-localities/',views.load_localities,name="ajax_load_localities"),
     path('searchresult/',views.searchresult),
-    path('searchprofile/<int:profilepk>/',views.searchprofile),
+    path('searchprofile/<uuid:profilepk>/',views.searchprofile),
 ]

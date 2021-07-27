@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from django.contrib.auth.models import User
+from usermanagement.models import User
 from searchconsole.models import city
 from .models import searchdb
 # Create your views here.
@@ -22,12 +22,13 @@ def getlistedformsubmit(request):
     shopname=request.POST['shopname']
     shopaddress=request.POST['shopaddress']
     shopcontact=request.POST['shopcontact']
+    shopimage=request.FILES['img']
     #if the user has already submitted a request
     if searchdb.objects.filter(user_id=userid).exists():
         messages.add_message(request,messages.ERROR,"You have already submitted a request.Please wait while we verify.")
         return redirect ('/user/homepage/')
     else:
-        u=searchdb(user_id=userid,shopname=shopname,city=selectcity,locality=selectlocality,shopaddress=shopaddress,shopcontact=shopcontact)
+        u=searchdb(user_id=userid,shopname=shopname,city=selectcity,locality=selectlocality,shopaddress=shopaddress,shopcontact=shopcontact,shopimage=shopimage)
         u.save()
         messages.add_message(request,messages.SUCCESS,"Your Request Has been submitted")
         return redirect ('/user/homepage/')

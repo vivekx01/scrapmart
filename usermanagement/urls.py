@@ -22,6 +22,6 @@ urlpatterns = [
     path('homepage/',views.userhomepageview),
     path('profile/',views.profilepage),
     path('profile/edit/',views.editprofileview),
-    path('profile/edit/save/<int:userpk>/',views.profilesave),
+    path('profile/edit/save/<uuid:userpk>/',views.profilesave),
 
 ]

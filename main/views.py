@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import userquery
-from django.contrib.auth.models import User
+from usermanagement.models import User
 from django.contrib import messages
 
 

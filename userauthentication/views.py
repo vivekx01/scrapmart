@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.models import User
+from usermanagement.models import User
 from django.contrib import messages
 from usermanagement.models import userinfo
 from django.core.mail import send_mail
@@ -83,7 +83,7 @@ def signup(request):
         uidb64= urlsafe_base64_encode(force_bytes(user.pk))  #encoding user's id
         domain = get_current_site(request).domain  #fetching the current domain on which the application is running
         link= reverse('activate',kwargs={'uidb64':uidb64,'token':token_generator.make_token(user)}) #generating a hash value for the token
-        activate_url='https://'+domain+link #appending all the parts of the generated token
+        activate_url='http://'+domain+link #appending all the parts of the generated token
         #Sending the verification token to user's email ID
         subject = 'Activate your Account'
         message = 'Hi ' + user.username +"\n"+ " Please use the link for verification:\n " + activate_url
