@@ -80,9 +80,13 @@ def userqueries(request):
     #code to retrieve the user queries for admin
     if not request.user.is_authenticated:
         return redirect('/admin/login/')
-    queries=userquery.objects.filter(status=False)
-    context={'queries':queries}
-    return render(request,"userqueries.html",context)
+    elif userquery.objects.filter(status=False).exists():
+        queries=userquery.objects.filter(status=False)
+        res= True
+        context={'queries':queries, 'res': res}
+        return render(request,"userqueries.html",context)
+    else:
+        return render(request,"userqueries.html")
 
 def adminaddshopview(request):
     #code to render admin panel add shop function
