@@ -1,5 +1,8 @@
 # Project Scrapmart
 
+Find the deployed version of the application here: 
+https://scrapmart.herokuapp.com/
+
 #Note: Scrapmart uses PostgresSQL as backend, so make sure you have it installed and change the databases section in settings.py before running the app.
 
 
