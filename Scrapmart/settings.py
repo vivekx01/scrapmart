@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['scrapmart.herokuapp.com',
 '127.0.0.1',
 ]
 
+SECURE_SSL_REDIRECT = True
 
 # Application definition
 
@@ -122,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
