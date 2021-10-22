@@ -39,7 +39,7 @@ And navigate to `http://127.0.0.1:8000/`.
 
 Screenshots:
 
-![1](https://user-images.githubusercontent.com/72996825/124763728-ead36680-df51-11eb-8842-66a1e1b1ee81.PNG)
+![1](https://user-images.githubusercontent.com/72996825/138402104-f376873c-617a-42d9-8188-6fa46329238d.PNG)
 ![2](https://user-images.githubusercontent.com/72996825/124763741-ec9d2a00-df51-11eb-86e6-ce31ab9bf710.PNG)
 ![3](https://user-images.githubusercontent.com/72996825/124763744-ec9d2a00-df51-11eb-84f2-feee47f2e5c5.PNG)
 ![4](https://user-images.githubusercontent.com/72996825/124763746-ed35c080-df51-11eb-9bc1-007f09020fdf.PNG)
