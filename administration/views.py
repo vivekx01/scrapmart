@@ -54,7 +54,7 @@ def adminrequests(request):
         return render(request,'adminlogin.html')
     else:
         if searchdb.objects.filter(is_verified=False).exists():
-            requests=searchdb.objects.filter(is_verified=False)
+            requests=searchdb.objects.filter(is_verified=False) 
             res=True
         else:
             requests=searchdb.objects.filter(is_verified=False)
