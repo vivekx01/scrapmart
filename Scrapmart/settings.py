@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@_l=j9i8&!)zi)0le!iq^um5ndgph8-ke-zs2=41#(-kj02+v+'
+SECRET_KEY = "SECRET_KEY"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -96,7 +96,7 @@ AUTH_USER_MODEL = 'usermanagement.User'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgres://scrapmart_user:Whg9acKNfrOuXSNiaY4wJF78EYTO8YzA@dpg-chrh8a8rddlba9vmp7k0-a.oregon-postgres.render.com/scrapmart",
+        default="DATABASE_URL",
         conn_max_age=600,
         conn_health_checks=True,
     )
