@@ -1,6 +1,10 @@
 # Project Scrapmart
+## Deployed Version of the Project
+https://scrapmart.onrender.com/
 
-#Note: Scrapmart uses PostgresSQL as backend, so make sure you have it installed and change the databases section in settings.py before running the app.
+## Note 
+
+Scrapmart uses PostgresSQL as backend, so make sure you have it installed and change the databases section in settings.py before running the app.
 
 
 ## Setup
